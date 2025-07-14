@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouteError, Link } from 'react-router-dom';
 import { FaExclamationTriangle, FaHome, FaHistory } from 'react-icons/fa';
 

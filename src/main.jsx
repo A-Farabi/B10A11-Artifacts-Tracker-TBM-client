@@ -6,7 +6,10 @@ import AuthProvider from "./Auth/AuthProvider";
 import Login from "./Pages/Login";
 import AllArtifacts from "./Pages/AllArtifacts";
 import AddArtifacts from "./Pages/AddArtifacts";
+import Register from "./Auth/Register";
+import { ToastContainer } from "react-toastify";
 
+<ToastContainer position="top-center" autoClose={3000} />
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>
+      },
+      {
+        path: "register",
+        element: <Register></Register>
       },
       {
         path: "all-artifacts",
@@ -32,7 +39,21 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
+  <>
   <AuthProvider>
     <RouterProvider router={router} />
   </AuthProvider>
+  <ToastContainer 
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
+  </>
 );
