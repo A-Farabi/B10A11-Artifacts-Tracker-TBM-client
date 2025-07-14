@@ -35,14 +35,14 @@ const ErrorPage = () => {
             <h1 className="text-4xl font-bold text-gray-800 mb-4">{errorTitle}</h1>
             <p className="text-xl text-gray-600 mb-8">{errorMessage}</p>
             
-            {process.env.NODE_ENV === 'development' && (
+            {/* {process.env.NODE_ENV === 'development' && (
               <div className="bg-gray-50 p-4 rounded mb-8 text-left">
                 <p>{error.statusText || error.message}</p>
                 <pre className="whitespace-pre-wrap break-words text-sm text-gray-700 mt-2">
                   {error.stack}
                 </pre>
               </div>
-            )}
+            )} */}
             
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               <Link

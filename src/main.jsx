@@ -4,6 +4,8 @@ import Root from "./Pages/Root";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
 import AuthProvider from "./Auth/AuthProvider";
 import Login from "./Pages/Login";
+import AllArtifacts from "./Pages/AllArtifacts";
+import AddArtifacts from "./Pages/AddArtifacts";
 
 
 const router = createBrowserRouter([
@@ -15,7 +17,16 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>
-      }
+      },
+      {
+        path: "all-artifacts",
+        element: <AllArtifacts></AllArtifacts>
+      },
+      {
+        path: "add-artifacts",
+        element: <AddArtifacts></AddArtifacts>
+      },
+      
     ],
   },
 ]);

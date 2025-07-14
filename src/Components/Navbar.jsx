@@ -7,8 +7,8 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "All Artifacts", path: "/all-visas" },
-    { name: "Add Artifacts", path: "/add-visa" },
+    { name: "All Artifacts", path: "/all-artifacts" },
+    { name: "Add Artifacts", path: "/add-artifacts" },
   ];
 
   const handleLogout = async () => {
