@@ -1,7 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
-import UserMenu from "../Auth/UserMenu";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -113,7 +112,7 @@ const Navbar = () => {
         )}
       </div> */}
 
-<div className="flex items-center space-x-4 navbar-end">
+<div className="flex items-center space-x-4">
             {user ? (
               <UserMenu />
             ) : (

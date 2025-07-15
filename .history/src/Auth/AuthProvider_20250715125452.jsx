@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -27,7 +28,9 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleAuthProvider)
             .then((result) => {
                 setUser(result.user); // Update the user state
+                toast.success("Successfully signed in with Google!"); // Return the user object for navigation handling
                 console.log(result.user);
+                navigate('/')
                 return result.user;
             })
             .catch((err) => {

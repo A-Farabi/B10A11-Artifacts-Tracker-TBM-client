@@ -113,7 +113,7 @@ const Navbar = () => {
         )}
       </div> */}
 
-<div className="flex items-center space-x-4 navbar-end">
+<div className="flex items-center space-x-4 navb">
             {user ? (
               <UserMenu />
             ) : (

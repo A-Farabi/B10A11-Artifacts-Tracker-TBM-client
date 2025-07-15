@@ -2,7 +2,6 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { createContext, useEffect, useState } from 'react';
 import auth from './firebase.init';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 
 export const AuthContext = createContext(null)
@@ -27,6 +26,7 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleAuthProvider)
             .then((result) => {
                 setUser(result.user); // Update the user state
+                toast.success("Successfully signed in with Google!"); // Return the user object for navigation handling
                 console.log(result.user);
                 return result.user;
             })

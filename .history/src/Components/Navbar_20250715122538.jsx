@@ -1,7 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
-import UserMenu from "../Auth/UserMenu";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -113,19 +112,7 @@ const Navbar = () => {
         )}
       </div> */}
 
-<div className="flex items-center space-x-4 navbar-end">
-            {user ? (
-              <UserMenu />
-            ) : (
-              <Link
-                to="/login"
-                className="px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-800"
-              >
-                Login
-              </Link>
-            )}
-          </div>
-
+      
     </div>
   );
 };

@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleAuthProvider)
             .then((result) => {
                 setUser(result.user); // Update the user state
+                toast.success("Successfully signed in with Google!"); // Return the user object for navigation handling
                 console.log(result.user);
                 return result.user;
             })
