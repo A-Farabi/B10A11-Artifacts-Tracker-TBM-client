@@ -27,7 +27,7 @@ const Login = () => {
               });
     })
     .catch((error)=>{
-        console.log(error.message);
+        toast.error(error.message);
     })
 
     form.reset()
