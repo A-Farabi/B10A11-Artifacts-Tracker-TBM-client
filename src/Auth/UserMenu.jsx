@@ -35,7 +35,7 @@ const UserMenu = () => {
         </button>
         {/* Display Name Tooltip */}
 
-          <div className="absolute -bottom-18 -left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center">
+          <div className="absolute z-50 -bottom-18 -left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center">
             <div>{user.displayName || "User"}</div>
             <div>
               <div className="mt-1">
