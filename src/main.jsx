@@ -12,6 +12,7 @@ import Home from "./Components/Home";
 import LikedArtifacts from "./Components/LikedArtifacts";
 import PrivateRoutes from "./Auth/PrivateRoutes";
 import MyArtifacts from "./Components/MyArtifacts";
+import ArtifactDetail from "./Components/ArtifactDetail";
 
 <ToastContainer position="top-center" autoClose={3000} />
 
@@ -35,7 +36,13 @@ const router = createBrowserRouter([
       },
       {
         path: "all-artifacts",
-        element: <AllArtifacts></AllArtifacts>
+        element: <AllArtifacts></AllArtifacts>,
+        loader: ()=>fetch('http://localhost:5000/all-artifacts')
+      },
+      {
+        path: "all-artifacts/:id",
+        element: <ArtifactDetail></ArtifactDetail>,
+        loader: ({params})=>fetch(`http://localhost:5000/all-artifacts/${params.id}`)
       },
       {
         path: "add-artifacts",
