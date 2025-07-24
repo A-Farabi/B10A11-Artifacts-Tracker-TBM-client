@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa';
+import { FaEye, FaUniversity } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { RiGalleryView } from 'react-icons/ri';
 
 const FeaturedArtifacts = () => {
 
@@ -52,6 +53,13 @@ const FeaturedArtifacts = () => {
             </div>
           ))}
         </div>
+      </div>
+      {/* button  */}
+      <div className="mt-12 text-center">
+        <Link to="/all-artifacts" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          View All Artifacts
+        </Link>
       </div>
     </section>
   );
