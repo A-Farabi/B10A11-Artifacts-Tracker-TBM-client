@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "all-artifacts/:id",
-        element: <ArtifactDetail></ArtifactDetail>,
+        element: <PrivateRoutes><ArtifactDetail></ArtifactDetail></PrivateRoutes>,
         loader: ({params})=>fetch(`http://localhost:5000/all-artifacts/${params.id}`)
       },
       {
