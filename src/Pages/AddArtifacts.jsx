@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../Auth/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const AddArtifacts = () => {
   const { user } = useContext(AuthContext);
@@ -48,15 +49,20 @@ const AddArtifacts = () => {
     setIsSubmitting(true);
 
     // Basic validation
-    if (!formData.name || !formData.image) {
-      toast.error('Artifact name and image URL are required');
-      setIsSubmitting(false);
-      return;
-    }
+    // if (!formData.name || !formData.image) {
+    //   toast.error('Artifact name and image URL are required');
+    //   setIsSubmitting(false);
+    //   return;
+    // }
 
     try {
       // Here you would typically make an API call to your backend
-      // Example:
+    await axios.post('http://localhost:5000/add-artifacts', formData,{
+      headers:{
+        "Content-Type":'application/json'
+      }
+    })
+      .then(res => res.data)
       // const response = await axios.post('/api/artifacts', formData);
       
       // Simulate successful submission
