@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyArtifacts = () => {
     const [artifacts, setArtifacts] = useState([]);
@@ -97,23 +98,41 @@ const MyArtifacts = () => {
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this artifact?')) return;
+    const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+        const response = await axios.delete(
+            `http://localhost:5000/delete-artifact/${id}`,
+            { withCredentials: true }
+        );
         
-        try {
-            const response = await axios.delete(
-                `http://localhost:5000/delete-artifact/${id}`,
-                { withCredentials: true }
-            );
-            
-            if (response.data.success) {
-                toast.success('Artifact deleted successfully');
-                setArtifacts(artifacts.filter(artifact => artifact._id !== id));
-            }
-        } catch (error) {
-            console.error('Error deleting artifact:', error);
-            toast.error(error.response?.data?.error || 'Failed to delete artifact');
+        if (response.data.success) {
+            await Swal.fire({
+                title: "Deleted!",
+                text: "Your artifact has been deleted.",
+                icon: "success"
+            });
+            setArtifacts(artifacts.filter(artifact => artifact._id !== id));
         }
-    };
+    } catch (error) {
+        console.error('Error deleting artifact:', error);
+        await Swal.fire({
+            title: "Error!",
+            text: error.response?.data?.error || 'Failed to delete artifact',
+            icon: "error"
+        });
+    }
+};
 
     if (loading) {
         return <div className="text-center py-8">Loading your artifacts...</div>;
