@@ -123,6 +123,7 @@ const MyArtifacts = () => {
                 icon: "success"
             });
             setArtifacts(artifacts.filter(artifact => artifact._id !== id));
+            navigate('/all-artifacts')
         }
     } catch (error) {
         console.error('Error deleting artifact:', error);
