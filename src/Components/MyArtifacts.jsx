@@ -230,147 +230,203 @@ const MyArtifacts = () => {
 
             {/* Update Modal starts here*/}
             {showModal && (
-                <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden">
-                        {/* Modal Header */}
-                        <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
-                            <h2 className="text-2xl font-bold text-white">Update Artifact</h2>
-                            <p className="text-blue-100 mt-1">Edit the details of your artifact</p>
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
+        <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden">
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+                <h2 className="text-2xl font-bold text-white">Update Artifact</h2>
+                <p className="text-blue-100 mt-1">Edit the details of your artifact</p>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Column 1 */}
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                defaultValue={formData.name}
+                                placeholder={formData.name}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                onFocus={(e) => {
+                                    if (e.target.value === formData.name) {
+                                        e.target.value = '';
+                                    }
+                                }}
+                                onBlur={(e) => {
+                                    if (e.target.value === '') {
+                                        e.target.value = formData.name;
+                                    }
+                                }}
+                            />
                         </div>
 
-                        {/* Modal Body */}
-                        <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Column 1 */}
-                                <div className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                        <input
-                                            type="text"
-                                            name="image"
-                                            value={formData.image}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                        />
-                                        {formData.image && (
-                                            <div className="mt-2 h-40 overflow-hidden rounded-lg border">
-                                                <img 
-                                                    src={formData.image} 
-                                                    alt="Preview" 
-                                                    className="w-full h-full object-cover"
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                        <select
-                                            name="type"
-                                            value={formData.type}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                        >
-                                            <option value="Sculptures">Sculptures</option>
-                                            <option value="Paintings">Paintings</option>
-                                            <option value="Pottery">Pottery</option>
-                                            <option value="Jewelry">Jewelry</option>
-                                            <option value="Tools">Tools</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                            <input
+                                type="text"
+                                name="image"
+                                defaultValue={formData.image}
+                                placeholder={formData.image}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                onFocus={(e) => {
+                                    if (e.target.value === formData.image) {
+                                        e.target.value = '';
+                                    }
+                                }}
+                                onBlur={(e) => {
+                                    if (e.target.value === '') {
+                                        e.target.value = formData.image;
+                                    }
+                                }}
+                            />
+                            {formData.image && (
+                                <div className="mt-2 h-40 overflow-hidden rounded-lg border">
+                                    <img 
+                                        src={formData.image} 
+                                        alt="Preview" 
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
+                            )}
+                        </div>
 
-                                {/* Column 2 */}
-                                <div className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Historical Context</label>
-                                        <textarea
-                                            name="historicalContext"
-                                            value={formData.historicalContext}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition min-h-[120px]"
-                                            rows="4"
-                                        />
-                                    </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                            <select
+                                name="type"
+                                defaultValue={formData.type}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            >
+                                <option value="" disabled>Select type</option>
+                                <option value="Sculptures">Sculptures</option>
+                                <option value="Paintings">Paintings</option>
+                                <option value="Pottery">Pottery</option>
+                                <option value="Jewelry">Jewelry</option>
+                                <option value="Tools">Tools</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
 
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Created</label>
-                                            <input
-                                                type="date"
-                                                name="createdAt"
-                                                value={formData.createdAt}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">Discovered</label>
-                                            <input
-                                                type="date"
-                                                name="discoveredAt"
-                                                value={formData.discoveredAt}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                            />
-                                        </div>
-                                    </div>
+                    {/* Column 2 */}
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Historical Context</label>
+                            <textarea
+                                name="historicalContext"
+                                defaultValue={formData.historicalContext}
+                                placeholder={formData.historicalContext}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition min-h-[120px]"
+                                rows="4"
+                                onFocus={(e) => {
+                                    if (e.target.value === formData.historicalContext) {
+                                        e.target.value = '';
+                                    }
+                                }}
+                                onBlur={(e) => {
+                                    if (e.target.value === '') {
+                                        e.target.value = formData.historicalContext;
+                                    }
+                                }}
+                            />
+                        </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Discovered By</label>
-                                        <input
-                                            type="text"
-                                            name="discoveredBy"
-                                            value={formData.discoveredBy}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Current Location</label>
-                                        <input
-                                            type="text"
-                                            name="presentLocation"
-                                            value={formData.presentLocation}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                        />
-                                    </div>
-                                </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Created</label>
+                                <input
+                                    type="date"
+                                    name="createdAt"
+                                    defaultValue={formData.createdAt}
+                                    onChange={handleInputChange}
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Discovered</label>
+                                <input
+                                    type="date"
+                                    name="discoveredAt"
+                                    defaultValue={formData.discoveredAt}
+                                    onChange={handleInputChange}
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                />
                             </div>
                         </div>
 
-                        {/* Modal Footer */}
-                        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
-                            <button
-                                onClick={handleCloseModal}
-                                className="px-6 py-2 text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleUpdate}
-                                className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md"
-                            >
-                                Save Changes
-                            </button>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Discovered By</label>
+                            <input
+                                type="text"
+                                name="discoveredBy"
+                                defaultValue={formData.discoveredBy}
+                                placeholder={formData.discoveredBy}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                onFocus={(e) => {
+                                    if (e.target.value === formData.discoveredBy) {
+                                        e.target.value = '';
+                                    }
+                                }}
+                                onBlur={(e) => {
+                                    if (e.target.value === '') {
+                                        e.target.value = formData.discoveredBy;
+                                    }
+                                }}
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Current Location</label>
+                            <input
+                                type="text"
+                                name="presentLocation"
+                                defaultValue={formData.presentLocation}
+                                placeholder={formData.presentLocation}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                onFocus={(e) => {
+                                    if (e.target.value === formData.presentLocation) {
+                                        e.target.value = '';
+                                    }
+                                }}
+                                onBlur={(e) => {
+                                    if (e.target.value === '') {
+                                        e.target.value = formData.presentLocation;
+                                    }
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+                <button
+                    onClick={handleCloseModal}
+                    className="px-6 py-2 text-gray-700 font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+                >
+                    Cancel
+                </button>
+                <button
+                    onClick={handleUpdate}
+                    className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md"
+                >
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+)}
         </div>
     );
 };
