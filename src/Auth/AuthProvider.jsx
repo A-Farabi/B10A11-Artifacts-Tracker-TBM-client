@@ -3,6 +3,9 @@ import { createContext, useEffect, useState } from 'react';
 import auth from './firebase.init';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 
 export const AuthContext = createContext(null)
@@ -62,7 +65,21 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser)
             setLoading(false)
-        })
+           try {
+            if (currentUser?.email) {
+                const user = { email: currentUser.email };
+                axios.post('http://localhost:5000/jwt', user, {
+                    withCredentials: true
+                });
+            } else {
+                axios.post('http://localhost:5000/logout', {}, {
+                    withCredentials: true,
+                });
+            }
+        } catch (error) {
+            console.error('Authentication error:', error);
+        }
+    });
         return () =>{
             unSubscribe()
         }
