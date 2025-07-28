@@ -56,36 +56,84 @@ const AuthProvider = ({ children }) => {
     }
 
      // Log out user
-     const logOut = () => {
-        return signOut(auth);
-    };
+const logOut = async () => {
+  try {
+    // 1. First clear server session
+    console.log('Initiating server logout...');
+    const logoutResponse = await axios.post('http://localhost:5000/logout', {}, {
+      withCredentials: true,
+      headers: { 'Content-Type': 'application/json' }
+    });
+    console.log('Server logout response:', logoutResponse.data);
+
+    // 2. Then sign out from Firebase
+    console.log('Signing out from Firebase...');
+    await signOut(auth);
+    
+    // 3. Force clear client-side token (belt-and-suspenders)
+    document.cookie = 'token=; path=/; domain=localhost; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    
+    // 4. Verify token is gone
+    console.log('Verifying token removal...');
+    try {
+      const check = await axios.get('http://localhost:5000/debug-check-token', {
+        withCredentials: true
+      });
+      console.warn('Token still exists after logout!', check.data);
+    } catch (err) {
+      console.log('Token successfully cleared (received expected 401)');
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Logout failed:', {
+      message: error.message,
+      response: error.response?.data
+    });
+    throw error;
+  }
+};
 
     // unsubscribe 
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) =>{
-            setUser(currentUser)
-            setLoading(false)
-           try {
-            if (currentUser?.email) {
-                const user = { email: currentUser.email };
-                axios.post('http://localhost:5000/jwt', user, {
-                    withCredentials: true
-                });
-                
-            } else {
-                axios.post('http://localhost:5000/logout', {}, {
-                    withCredentials: true,
-                });
-                
+useEffect(() => {
+  const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    setUser(currentUser);
+    setLoading(false);
+
+    if (currentUser?.email) {
+      try {
+        console.log('Setting JWT for:', currentUser.email);
+        const response = await axios.post('http://localhost:5000/jwt', 
+          { email: currentUser.email },
+          { 
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
             }
-        } catch (error) {
-            console.error('Authentication error:', error);
-        }
-    });
-        return () =>{
-            unSubscribe()
-        }
-    })
+          }
+        );
+        
+        console.log('JWT Response:', response.data);
+        
+        // Verify cookie was set
+        const tokenCheck = await axios.get('http://localhost:5000/debug-check-token', {
+          withCredentials: true
+        });
+        console.log('Token Verification:', tokenCheck.data);
+        
+      } catch (error) {
+        console.error('Auth Error:', {
+          message: error.message,
+          response: error.response?.data,
+          config: error.config
+        });
+      }
+    }
+  });
+
+  return () => unSubscribe();
+}, []);
 
 
 
