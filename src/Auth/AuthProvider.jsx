@@ -71,10 +71,12 @@ const AuthProvider = ({ children }) => {
                 axios.post('http://localhost:5000/jwt', user, {
                     withCredentials: true
                 });
+                
             } else {
                 axios.post('http://localhost:5000/logout', {}, {
                     withCredentials: true,
                 });
+                
             }
         } catch (error) {
             console.error('Authentication error:', error);
