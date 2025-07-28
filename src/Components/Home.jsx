@@ -3,6 +3,7 @@ import ArtifactCarousel from './ArtifactCarousel';
 import MuseumPartners from './MuseumPartners';
 import TestimonialsSection from './TestimonialsSection';
 import FeaturedArtifacts from './FeaturedArtifacts';
+import Footer from './Footer';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <FeaturedArtifacts></FeaturedArtifacts>
             <MuseumPartners></MuseumPartners>
             <TestimonialsSection></TestimonialsSection>
+            <Footer></Footer>
         </div>
     );
 };
