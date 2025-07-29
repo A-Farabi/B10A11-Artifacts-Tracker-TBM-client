@@ -21,7 +21,7 @@ const ArtifactDetail = () => {
         const checkLikeStatus = async () => {
             if (user) {
                 try {
-                    const response = await axios.get(`http://localhost:5000/artifacts/${artifact._id}/like-status`, {
+                    const response = await axios.get(`https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/artifacts/${artifact._id}/like-status`, {
                         params: { userId: user.uid }
                     });
                     setIsLiked(response.data.liked);
@@ -41,7 +41,7 @@ const ArtifactDetail = () => {
 
         setLoadingLike(true);
         try {
-            const response = await axios.patch(`http://localhost:5000/artifacts/${artifact._id}/like`, {
+            const response = await axios.patch(`https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/artifacts/${artifact._id}/like`, {
                 userId: user.uid
             });
 

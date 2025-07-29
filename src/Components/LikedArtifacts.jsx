@@ -15,7 +15,7 @@ const LikedArtifacts = () => {
         const fetchLikedArtifacts = async () => {
             if (user) {
                 try {
-                    const response = await axios.get(`http://localhost:5000/users/${user.uid}/liked-artifacts`);
+                    const response = await axios.get(`https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/users/${user.uid}/liked-artifacts`);
                     setLikedArtifacts(response.data);
                 } catch (error) {
                     console.error('Error fetching liked artifacts:', error);

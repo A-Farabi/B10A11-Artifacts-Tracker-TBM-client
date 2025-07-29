@@ -37,12 +37,12 @@ const router = createBrowserRouter([
       {
         path: "all-artifacts",
         element: <AllArtifacts></AllArtifacts>,
-        loader: ()=>fetch('http://localhost:5000/all-artifacts')
+        loader: ()=>fetch('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/all-artifacts')
       },
       {
         path: "all-artifacts/:id",
         element: <PrivateRoutes><ArtifactDetail></ArtifactDetail></PrivateRoutes>,
-        loader: ({params})=>fetch(`http://localhost:5000/all-artifacts/${params.id}`)
+        loader: ({params})=>fetch(`https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/all-artifacts/${params.id}`)
       },
       {
         path: "add-artifacts",

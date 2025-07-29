@@ -60,7 +60,7 @@ const logOut = async () => {
   try {
     // 1. First clear server session
     console.log('Initiating server logout...');
-    const logoutResponse = await axios.post('http://localhost:5000/logout', {}, {
+    const logoutResponse = await axios.post('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/logout', {}, {
       withCredentials: true,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -76,7 +76,7 @@ const logOut = async () => {
     // 4. Verify token is gone
     console.log('Verifying token removal...');
     try {
-      const check = await axios.get('http://localhost:5000/debug-check-token', {
+      const check = await axios.get('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/debug-check-token', {
         withCredentials: true
       });
       console.warn('Token still exists after logout!', check.data);
@@ -103,7 +103,7 @@ useEffect(() => {
     if (currentUser?.email) {
       try {
         console.log('Setting JWT for:', currentUser.email);
-        const response = await axios.post('http://localhost:5000/jwt', 
+        const response = await axios.post('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/jwt', 
           { email: currentUser.email },
           { 
             withCredentials: true,
@@ -117,7 +117,7 @@ useEffect(() => {
         console.log('JWT Response:', response.data);
         
         // Verify cookie was set
-        const tokenCheck = await axios.get('http://localhost:5000/debug-check-token', {
+        const tokenCheck = await axios.get('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/debug-check-token', {
           withCredentials: true
         });
         console.log('Token Verification:', tokenCheck.data);

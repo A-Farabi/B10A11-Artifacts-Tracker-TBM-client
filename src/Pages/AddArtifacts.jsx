@@ -59,7 +59,7 @@ const AddArtifacts = () => {
 
     try {
       // Here you would typically make an API call to your backend
-    await axios.post('http://localhost:5000/add-artifacts', formData,{
+    await axios.post('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/add-artifacts', formData,{
       headers:{
         "Content-Type":'application/json'
       }

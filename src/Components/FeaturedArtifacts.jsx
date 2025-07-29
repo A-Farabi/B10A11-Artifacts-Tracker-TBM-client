@@ -7,7 +7,7 @@ const FeaturedArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/most-liked-artifacts?limit=6')
+    axios.get('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/most-liked-artifacts?limit=6')
       .then(res => setArtifacts(res.data))
       .catch(err => console.error('Error fetching most liked artifacts:', err));
   }, []);

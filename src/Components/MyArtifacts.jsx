@@ -28,7 +28,7 @@ const MyArtifacts = () => {
     useEffect(() => {
         const fetchArtifacts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/my-artifacts', {
+                const response = await axios.get('https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/my-artifacts', {
                     withCredentials: true
                 });
                 
@@ -81,7 +81,7 @@ const MyArtifacts = () => {
     const handleUpdate = async () => {
         try {
             const response = await axios.patch(
-                `http://localhost:5000/update-artifact/${currentArtifact._id}`,
+                `https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/update-artifact/${currentArtifact._id}`,
                 formData,
                 { withCredentials: true }
             );
@@ -114,7 +114,7 @@ const MyArtifacts = () => {
 
     try {
         const response = await axios.delete(
-            `http://localhost:5000/delete-artifact/${id}`,
+            `https://b10-a11-artifacts-tracker-tbm-serve.vercel.app/delete-artifact/${id}`,
             { withCredentials: true }
         );
         
