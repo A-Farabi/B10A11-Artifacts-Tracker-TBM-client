@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../Auth/AuthProvider';
 import axios from 'axios';
+import useDocumentTitle from '../Hooks/UseDocumentTitle';
 
 const ArtifactDetail = () => {
+    useDocumentTitle('Artifact Details')
     const artifact = useLoaderData();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();

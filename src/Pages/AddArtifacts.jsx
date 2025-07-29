@@ -3,8 +3,10 @@ import { AuthContext } from '../Auth/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import useDocumentTitle from '../Hooks/UseDocumentTitle';
 
 const AddArtifacts = () => {
+  useDocumentTitle('Add Artifact')
   const { user } = useContext(AuthContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
   

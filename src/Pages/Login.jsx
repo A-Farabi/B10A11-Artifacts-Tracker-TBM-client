@@ -4,8 +4,10 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import { toast } from "react-toastify";
+import useDocumentTitle from "../Hooks/UseDocumentTitle";
 
 const Login = () => {
+  useDocumentTitle('Login')
   const navigate = useNavigate();
   const { signInUser, googleLogin } = useContext(AuthContext);
 

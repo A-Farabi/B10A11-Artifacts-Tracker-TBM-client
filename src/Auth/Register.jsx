@@ -11,8 +11,10 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "./AuthProvider";
+import useDocumentTitle from "../Hooks/UseDocumentTitle";
 
 const Register = () => {
+  useDocumentTitle("Register")
   const { createUser, updateUserProfile, loading } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",

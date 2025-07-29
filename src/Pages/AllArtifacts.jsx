@@ -8,8 +8,10 @@ import {
 } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useDocumentTitle from "../Hooks/UseDocumentTitle";
 
 const AllArtifacts = () => {
+  useDocumentTitle('All Artifacts')
   const artifacts = useLoaderData();
 
   return (

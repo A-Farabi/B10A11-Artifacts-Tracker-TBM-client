@@ -13,7 +13,6 @@ import LikedArtifacts from "./Components/LikedArtifacts";
 import PrivateRoutes from "./Auth/PrivateRoutes";
 import MyArtifacts from "./Components/MyArtifacts";
 import ArtifactDetail from "./Components/ArtifactDetail";
-import UpdateArtifact from "./Components/UpdateArtifact";
 
 <ToastContainer position="top-center" autoClose={3000} />
 
@@ -56,12 +55,7 @@ const router = createBrowserRouter([
       {
         path: "my-artifacts",
         element: <PrivateRoutes><MyArtifacts></MyArtifacts></PrivateRoutes>
-      },
-      // {
-      //   path: "update-artifact/:id",
-      //   element: <PrivateRoutes><UpdateArtifact></UpdateArtifact></PrivateRoutes>
-      // },
-      
+      },      
     ],
   },
 ]);

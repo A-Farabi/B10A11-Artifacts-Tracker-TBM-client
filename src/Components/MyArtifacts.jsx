@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthProvider';
 import Swal from 'sweetalert2';
+import useDocumentTitle from '../Hooks/UseDocumentTitle';
 
 const MyArtifacts = () => {
+    useDocumentTitle('My Artifacts')
     const [artifacts, setArtifacts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);

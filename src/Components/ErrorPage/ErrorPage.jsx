@@ -1,7 +1,9 @@
 import { useRouteError, Link } from 'react-router-dom';
 import { FaExclamationTriangle, FaHome, FaHistory } from 'react-icons/fa';
+import useDocumentTitle from '../../Hooks/UseDocumentTitle';
 
 const ErrorPage = () => {
+  useDocumentTitle('Error')
   const error = useRouteError();
   console.error(error);
 

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaHeart, FaRegHeart, FaHistory, FaCalendarAlt } from 'react-icons/fa';
 import { AuthContext } from '../Auth/AuthProvider';
 import axios from 'axios';
+import useDocumentTitle from '../Hooks/UseDocumentTitle';
 
 const LikedArtifacts = () => {
+    useDocumentTitle('Liked Artifacts')
     const { user } = useContext(AuthContext);
     const [likedArtifacts, setLikedArtifacts] = useState([]);
     const [loading, setLoading] = useState(true);
